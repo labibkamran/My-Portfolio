@@ -433,7 +433,7 @@ export const projects = [
       "https://res.cloudinary.com/dwakiaafh/image/upload/v1751926297/QuizRush_zwkicm.png",
     tags: ["Kotlin", "MVVM", "Room Database", "Google Drive Cloud API"],
     category: "android app",
-    github: "http://quizrush.developertest.cloud/",
+    github: "http://quizrush.online/",
   },
   {
     id: 1,
