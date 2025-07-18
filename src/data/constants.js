@@ -361,7 +361,19 @@ export const education = [
 
 export const projects = [
   {
-    id: 4,
+    id: 7,
+    title: "Dudo Management System",
+    date: "June 2025 - July 2025",
+    description:
+      "Comprehensive project management platform for CODEXON. Streamline your projects, collaborate with your team, and achieve your goals with our comprehensive management platform.",
+    image:
+      "https://res.cloudinary.com/dwakiaafh/image/upload/v1752804739/Screenshot_from_2025-07-18_07-03-33_plqov0.png",
+    tags: ["Express", "Type Script", "MongoDB"],
+    category: "web app",
+    github: "https://github.com/labibkamran/Dudo-Management-System.git",
+  },
+  {
+    id: 6,
     title: "Discuss_it",
     date: "September 2024 - February 2025",
     description:
@@ -373,7 +385,7 @@ export const projects = [
     github: "https://www.discussit.co/",
   },
   {
-    id: 0,
+    id: 5,
     title: "AI Vehicle Detection and Traffic Density Analysis",
     date: "June 2024 - August 2024",
     description:
@@ -398,7 +410,7 @@ export const projects = [
     github: "https://github.com/labibkamran/AI-Traffic-Density-Estimation.git",
   },
   {
-    id: 10,
+    id: 4,
     title: "Oracis AI",
     date: "Jun 2023 - Jul 2023",
     description:
@@ -424,7 +436,7 @@ export const projects = [
     github: "https://krossgosports.com/",
   },
   {
-    id: 5,
+    id: 2,
     title: "Quiz Rush",
     date: "March 2025 - May 2025",
     description:
@@ -451,7 +463,7 @@ export const projects = [
     github: "https://github.com/labibkamran/Admin-NUSTFruta.git",
   },
   {
-    id: 2,
+    id: 0,
     title: "Client Nustfruta",
     date: "May 2024 - June 2025",
     description:
