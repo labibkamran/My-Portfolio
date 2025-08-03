@@ -8,6 +8,7 @@ import Experience from "./components/sections/Experience";
 import Education from "./components/sections/Education";
 import StartCanvas from "./components/canvas/Stars";
 import Projects from "./components/sections/Projects";
+import Certificates from "./components/sections/Certificates";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 
@@ -48,6 +49,7 @@ function App() {
               <Experience />
             </Wrapper>
             <Projects />
+            <Certificates />
             <Wrapper>
               <Education />
               <Contact />

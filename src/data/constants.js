@@ -1,14 +1,13 @@
 export const Bio = {
   name: "Labib Kamran",
   roles: [
+    "Codexon Solutions",
     "Full Stack Developer",
-    "Android Developer",
-    "UI/UX Designer",
-    "AI Enthusiast",
-    "Programmer",
+    "Mobile App Developer",
+    "Cloud Developer",
   ],
   description:
-    "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
+    "I enjoy learning new things and taking on challenges. I work hard, stay positive, and always try to do my best. I don’t just want to finish tasks, I want to do meaningful work, grow my skills, and help the team succeed. No matter what I’m working on, I bring energy, curiosity, and a strong focus on quality. I’m always looking for ways to improve and make a real impact.",
   github: "https://github.com/labibkamran",
   resume:
     "https://drive.google.com/file/d/1_9onv3DcgBeAMeNJhdlMPFvkbQPLyFCa/view?usp=sharing",
@@ -140,30 +139,30 @@ export const skills = [
         image:
           "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg",
       },
-      {
-        name: "Jenkins",
-        image:
-          "https://toppng.com/uploads/preview/jenkins-logo-11609365847mufysaivph.png",
-      },
+      // {
+      //   name: "Jenkins",
+      //   image:
+      //     "https://toppng.com/uploads/preview/jenkins-logo-11609365847mufysaivph.png",
+      // },
       {
         name: "Nginx",
         image: "https://download.logo.wine/logo/Nginx/Nginx-Logo.wine.png",
       },
-      {
-        name: "Grafana",
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Grafana_logo.svg/1200px-Grafana_logo.svg.png",
-      },
+      // {
+      //   name: "Grafana",
+      //   image:
+      //     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Grafana_logo.svg/1200px-Grafana_logo.svg.png",
+      // },
       {
         name: "Kubernetes",
         image:
           "https://upload.wikimedia.org/wikipedia/commons/0/00/Kubernetes_%28container_engine%29.png",
       },
-      {
-        name: "Prometheus",
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/1200px-Prometheus_software_logo.svg.png",
-      },
+      // {
+      //   name: "Prometheus",
+      //   image:
+      //     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/1200px-Prometheus_software_logo.svg.png",
+      // },
     ],
   },
   {
@@ -373,6 +372,18 @@ export const projects = [
     github: "https://github.com/labibkamran/Dudo-Management-System.git",
   },
   {
+    id: 2,
+    title: "Quiz Rush",
+    date: "March 2025 - May 2025",
+    description:
+      "A quiz app that allows users to create and share quizzes, with features like real-time multiplayer mode and leaderboard.",
+    image:
+      "https://res.cloudinary.com/dwakiaafh/image/upload/v1751926297/QuizRush_zwkicm.png",
+    tags: ["Kotlin", "MVVM", "Room Database", "Google Drive Cloud API"],
+    category: "android app",
+    github: "http://quizrush.online/",
+  },
+  {
     id: 6,
     title: "Discuss_it",
     date: "September 2024 - February 2025",
@@ -383,6 +394,18 @@ export const projects = [
     tags: ["Express", "Type Script", "MYSQL"],
     category: "web app",
     github: "https://www.discussit.co/",
+  },
+  {
+    id: 8,
+    title: "AI Research Assistant",
+    date: "July 2025 - August 2025",
+    description:
+      "AI Research Assistant Chrome Extension streamlines online research by organizing findings, summarizing text with AI, and managing sources securely in your browser. Ideal for students and researchers seeking efficient, private, and organized workflows.",
+    image:
+      "https://media.licdn.com/dms/image/v2/D4D2DAQE3u1OiQDvuBA/profile-treasury-image-shrink_800_800/B4DZhtQriJGsAY-/0/1754179749501?e=1754794800&v=beta&t=VbB0TQsztcDbrVYbP5BDwNyYA1XYsXySPNZM5vdpDmc",
+    tags: ["Java", "Spring boot", "Frontend"],
+    category: "web app",
+    github: "https://github.com/labibkamran/AI-Research-Assistant-Frontend.git",
   },
   {
     id: 5,
@@ -436,18 +459,6 @@ export const projects = [
     github: "https://krossgosports.com/",
   },
   {
-    id: 2,
-    title: "Quiz Rush",
-    date: "March 2025 - May 2025",
-    description:
-      "A quiz app that allows users to create and share quizzes, with features like real-time multiplayer mode and leaderboard.",
-    image:
-      "https://res.cloudinary.com/dwakiaafh/image/upload/v1751926297/QuizRush_zwkicm.png",
-    tags: ["Kotlin", "MVVM", "Room Database", "Google Drive Cloud API"],
-    category: "android app",
-    github: "http://quizrush.online/",
-  },
-  {
     id: 1,
     title: "Admin Nustfruta",
     date: "May 2024 - June 2024",
@@ -474,5 +485,53 @@ export const projects = [
     category: "adnroid app",
     github: "https://github.com/labibkamran/Client-NUSTFruta.git",
     
+  },
+];
+
+export const certificates = [
+  {
+    id: 4,
+    title: "Generative AI for Java and Spring Development",
+    issuer: "coursera",
+    date: "August 2025",
+    description:
+      "Learn how to integrate generative AI models into Java and Spring applications, covering practical use cases and deployment.",
+    link: "https://coursera.org/share/69d98f41126e761b7b28354dcbaae4da",
+  },
+  {
+    id: 3,
+    title: "Essential Google Cloud Infrastructure: Core Services",
+    issuer: "coursera",
+    date: "July 2025",
+    description:
+      "Gain hands-on experience with Google Cloud’s core services, including networking, storage, and security essentials.",
+    link: "https://coursera.org/share/69d98f41126e761b7b28354dcbaae4da",
+  },
+  {
+    id: 2,
+    title: "Essential Google Cloud Infrastructure: Foundation",
+    issuer: "coursera",
+    date: "July 2025",
+    description:
+      "Understand the foundational concepts of Google Cloud, such as virtual machines, cloud storage, and IAM.",
+    link: "https://coursera.org/share/746927e2092db10a50189e78b0541c15",
+  },
+  {
+    id: 1,
+    title: "Google Cloud Fundamentals: Core Infrastructure",
+    issuer: "Coursera",
+    date: "July 2025",
+    description:
+      "Introduction to Google Cloud’s infrastructure, focusing on compute, networking, storage, and managed services.",
+    link: "https://coursera.org/share/62fd4c7a86aaddfd44422e57b3631133",
+  },
+  {
+    id: 0,
+    title: "AI For Everyone",
+    issuer: "coursera",
+    date: "June 2025",
+    description:
+      "A non-technical overview of AI concepts, real-world applications, and how AI is transforming industries.",
+    link: "https://coursera.org/share/5911d7861ff3d8a92f883e9a2bd99a46",
   },
 ];
