@@ -10,7 +10,7 @@ export const Bio = {
     "I enjoy learning new things and taking on challenges. I work hard, stay positive, and always try to do my best. I don’t just want to finish tasks, I want to do meaningful work, grow my skills, and help the team succeed. No matter what I’m working on, I bring energy, curiosity, and a strong focus on quality. I’m always looking for ways to improve and make a real impact.",
   github: "https://github.com/labibkamran",
   resume:
-    "https://drive.google.com/file/d/1_9onv3DcgBeAMeNJhdlMPFvkbQPLyFCa/view?usp=sharing",
+    "https://drive.google.com/file/d/1B-O3vr3gLfHGCHQFrUIH0MGTKOZm6YjG/view?usp=sharing",
   linkedin: "https://www.linkedin.com/in/labibkamran/",
   insta: "https://www.instagram.com/labib_kamran/",
 };
