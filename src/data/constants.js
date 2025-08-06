@@ -490,6 +490,15 @@ export const projects = [
 
 export const certificates = [
   {
+    id: 5,
+    title: "Foundations of Spring Boot & MVC Architecture",
+    issuer: "coursera",
+    date: "August 2025",
+    description:
+      "Build robust Spring Boot applications using MVC architecture, Spring Data JPA, and secure RESTful APIs with best practices.",
+    link: "https://coursera.org/share/27b1e88aa1cbf459044399ccec4826e6",
+  },
+  {
     id: 4,
     title: "Generative AI for Java and Spring Development",
     issuer: "coursera",
