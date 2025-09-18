@@ -369,7 +369,7 @@ export const projects = [
       "https://res.cloudinary.com/dwakiaafh/image/upload/v1752804739/Screenshot_from_2025-07-18_07-03-33_plqov0.png",
     tags: ["Express", "Type Script", "MongoDB"],
     category: "web app",
-    github: "https://github.com/labibkamran/Dudo-Management-System.git",
+    github: "dudo.codexon.pk",
   },
   {
     id: 2,
