@@ -8,15 +8,17 @@ const Card = styled.div`
   cursor: pointer;
   border-radius: 10px;
   box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.4);
+  border: 1px solid ${({ theme }) => theme.border};
   overflow: hidden;
   padding: 26px 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 50px 4px rgba(0, 0, 0, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 107, 107, 0.15);
+    border-color: ${({ theme }) => theme.borderHover};
     filter: brightness(1.1);
   }
 `;
@@ -93,6 +95,11 @@ const Button = styled.a`
   text-decoration: none;
   font-weight: 600;
   text-align: center;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: ${({ theme }) => theme.secondary};
+    text-decoration: underline;
+  }
 `;
 
 const ProjectCard = ({ project }) => {

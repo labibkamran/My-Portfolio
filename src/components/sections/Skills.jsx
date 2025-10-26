@@ -58,11 +58,17 @@ const SkillsContainer = styled.div`
 const Skill = styled.div`
   width: 100%;
   max-width: 500px;
-  background-color: rgba(17, 25, 40, 0.83);
-  border: 1px solid rgba(255, 255, 255, 0.125);
-  box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
+  background-color: ${({ theme }) => theme.card};
+  border: 1px solid ${({ theme }) => theme.border};
+  box-shadow: 0 4px 24px rgba(255, 107, 107, 0.1);
   border-radius: 16px;
   padding: 18px 36px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.15);
+    border-color: ${({ theme }) => theme.borderHover};
+  }
   @media (max-width: 768px) {
     max-width: 400px;
     padding: 10px 36px;

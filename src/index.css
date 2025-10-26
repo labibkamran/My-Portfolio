@@ -1,11 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+:root {
+  --bg-primary: #0D1117;
+  --bg-secondary: #161B22;
+  --bg-tertiary: #1C2128;
+  --text-primary: #E6EDF3;
+  --text-secondary: #8B949E;
+  --text-muted: #6E7681;
+  --accent-primary: #FF6B6B;
+  --accent-primary-hover: #FF5252;
+  --accent-secondary: #F59E0B;
+  --accent-tertiary: #10B981;
+  --gradient-hero: linear-gradient(135deg, rgba(255,107,107,0.1) 0%, rgba(245,158,11,0.05) 100%);
+  --border-color: #30363D;
+  --border-hover: rgba(255, 107, 107, 0.25);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 body {
@@ -14,26 +31,22 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-/* width */
 ::-webkit-scrollbar {
   width: 4px;
   height: 80px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  background: #222a35;
+  background: #1C2128;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #575c66;
+  background: #FF6B6B;
   border-radius: 6px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #626970;
+  background: #FF5252;
 }
 
 ::-webkit-backdrop-filter {

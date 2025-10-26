@@ -99,15 +99,15 @@ const ExperienceCard = ({ experience }) => {
         display: "flex",
         flexDirection: "column",
         gap: "12px",
-        background: "#1d1836",
+        background: "#161B22",
         color: "#fff",
-        boxShadow: "rgba(23, 92, 230, 0.15) 0px 4px 24px",
-        backgroundColor: "rgba(17, 25, 40, 0.83)",
-        border: "1px solid rgba(255, 255, 255, 0.125)",
+        boxShadow: "0 4px 24px rgba(255, 107, 107, 0.1)",
+        backgroundColor: "#161B22",
+        border: "1px solid #30363D",
         borderRadius: "6px",
       }}
       contentArrowStyle={{
-        borderRight: "7px solid  rgba(255, 255, 255, 0.3)",
+        borderRight: "7px solid rgba(255, 107, 107, 0.3)",
       }}
       date={experience?.date}
     >

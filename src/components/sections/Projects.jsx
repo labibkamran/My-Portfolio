@@ -64,6 +64,7 @@ const ToggleButton = styled.div`
   padding: 8px 18px;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
   &:hover {
     background: ${({ theme }) => theme.primary + 20};
   }
@@ -74,7 +75,7 @@ const ToggleButton = styled.div`
   ${({ active, theme }) =>
     active &&
     `
-  background:  ${theme.primary + 20};
+  background: ${theme.primary + 20};
   `}
 `;
 const Divider = styled.div`
