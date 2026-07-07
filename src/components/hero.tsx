@@ -36,7 +36,7 @@ export function Hero() {
         </p>
         <div className="mt-10 flex flex-wrap gap-3.5">
           <a
-            href="#projects"
+            href="#case-studies"
             className={cn(
               buttonVariants(),
               "h-auto rounded-xl border-primary/50 px-6 py-3.5 font-heading text-[15px] font-semibold transition-transform hover:-translate-y-0.5 hover:shadow-[0_14px_34px_-12px_rgba(233,180,76,0.55)]"

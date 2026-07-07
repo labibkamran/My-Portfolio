@@ -4,7 +4,7 @@
 import { SiteNav } from "@/components/site-nav";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
-import { Projects } from "@/components/projects";
+import { CaseStudies } from "@/components/case-studies";
 import { GithubActivity } from "@/components/github-activity";
 import { Skills } from "@/components/skills";
 import { Experience } from "@/components/experience";
@@ -47,7 +47,7 @@ export default function Home() {
         <main>
           <Hero />
           <About />
-          <Projects />
+          <CaseStudies />
           <GithubActivity />
           <Skills />
           <Experience />

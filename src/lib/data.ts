@@ -14,86 +14,76 @@ export const site = {
   github: "https://github.com/labibkamran",
   linkedin: "https://www.linkedin.com/in/labibkamran/",
   resume:
-    "https://drive.google.com/file/d/1B-O3vr3gLfHGCHQFrUIH0MGTKOZm6YjG/view?usp=sharing",
+    "https://drive.google.com/file/d/1b3CRhrYtIV_yjHcONxDzypyYTwH_Je8y/view?usp=sharing",
   url: "https://www.labibkamran.com",
 };
 
-export type Project = {
+export type CaseStudy = {
   kicker: string;
   title: string;
-  problem: string;
-  outcome: string;
+  summary: string;
   stack: string[];
-  href: string;
-  linkLabel: string;
+  overview: string;
+  built: string[];
+  outcomes: string[];
 };
 
-export const projects: Project[] = [
+export const caseStudies: CaseStudy[] = [
   {
-    kicker: "Full-stack · SaaS",
-    title: "Dudo Management System",
-    problem:
-      "Codexon's projects, teams, and goals lived in scattered tools and chats.",
-    outcome:
-      "Built a comprehensive project management platform that brings planning, collaboration, and tracking into one system.",
-    stack: ["Express", "TypeScript", "MongoDB"],
-    href: "https://dudo.codexon.pk",
-    linkLabel: "Visit live →",
+    kicker: "AI · Enterprise systems",
+    title: "AI-Driven Investigation System",
+    summary:
+      "Large language models combined with an e-office workflow, helping investigation teams process and act on information faster.",
+    stack: ["LLMs", "Backend APIs", "E-office integration"],
+    overview:
+      "An AI-driven investigation system that combines large language models with an e-office workflow. Teams were buried in unstructured documents and records spread across disconnected tools — this platform turns that raw information into something they can search, structure, and act on.",
+    built: [
+      "LLM-powered features that turn unstructured documents and records into searchable, structured insights.",
+      "AI capabilities integrated into an e-office system so investigation and case workflows run in one connected platform.",
+      "Backend services and APIs connecting the LLM layer with the application, with a focus on reliability and clean architecture.",
+    ],
+    outcomes: [
+      "Investigation and case workflows run end to end in one connected platform.",
+      "Teams process and act on information faster, with insights instead of raw documents.",
+    ],
   },
   {
-    kicker: "Full-stack · Platform",
-    title: "Discuss_it",
-    problem:
-      "Individuals and businesses had no direct, structured way to reach vetted experts.",
-    outcome:
-      "Co-built a platform giving direct access to experts across multiple fields, from discovery to conversation.",
-    stack: ["Express", "TypeScript", "MySQL"],
-    href: "https://www.discussit.co/",
-    linkLabel: "Visit live →",
+    kicker: "AI · EdTech",
+    title: "Intelligent Tutoring Platform",
+    summary:
+      "Raw video tutoring sessions transformed into structured, AI-powered learning experiences through a sophisticated AI pipeline.",
+    stack: ["LangChain", "Groq LLM", "AI pipeline"],
+    overview:
+      "An intelligent tutoring platform that bridges the gap between live tutoring sessions and structured, personalized learning materials. A sophisticated AI pipeline takes each raw session and produces everything a tutor and student need to keep learning moving.",
+    built: [
+      "AI-powered pipeline — topic extraction, progress evaluation, quiz generation, and executive summaries.",
+      "Tutor dashboard — session management, transcript uploads, student tracking, and professional PDF export.",
+      "Student dashboard — session discovery, interactive quizzes, progress analytics, and Calendly integration.",
+      "Real-time AI processing powered by LangChain + Groq LLM.",
+    ],
+    outcomes: [
+      "End-to-end functionality from session creation to student learning.",
+      "AI beyond summarization — true topic modeling and adaptive quiz generation.",
+      "Professional-grade PDF exports for tutors.",
+    ],
   },
   {
-    kicker: "AI · Browser extension",
-    title: "AI Research Assistant",
-    problem:
-      "Online research meant juggling tabs, notes, and sources with no organization.",
-    outcome:
-      "Shipped a Chrome extension that organizes findings, summarizes text with AI, and manages sources privately in the browser.",
-    stack: ["Java", "Spring Boot", "Chrome APIs"],
-    href: "https://github.com/labibkamran/AI-Research-Assistant-Frontend",
-    linkLabel: "View code →",
-  },
-  {
-    kicker: "Android · Realtime",
-    title: "Quiz Rush",
-    problem:
-      "Quiz apps were single-player and static — no way to create, share, and compete live.",
-    outcome:
-      "Built an Android app with quiz creation, real-time multiplayer mode, and leaderboards.",
-    stack: ["Kotlin", "MVVM", "Room", "Google Drive API"],
-    href: "http://quizrush.online/",
-    linkLabel: "Visit live →",
-  },
-  {
-    kicker: "Computer vision · ML",
-    title: "AI Traffic Density Analysis",
-    problem:
-      "Traffic monitoring from video footage needed manual counting and review.",
-    outcome:
-      "Fine-tuned YOLOv8 on a custom vehicle dataset to detect vehicles and analyze traffic density from raw video.",
-    stack: ["Python", "YOLOv8", "OpenCV", "PyTorch"],
-    href: "https://github.com/labibkamran/AI-Traffic-Density-Estimation",
-    linkLabel: "View code →",
-  },
-  {
-    kicker: "AI · Web3",
-    title: "Oracis AI",
-    problem:
-      "Job seekers rebuilt CVs by hand and signed agreements over email with no trust layer.",
-    outcome:
-      "Co-developed AI-powered CV creation, personalized job matching, and secure NDA signing via blockchain smart contracts.",
-    stack: ["React Native", "JavaScript", "Blockchain"],
-    href: "https://github.com/TalalMajeed/Oracis-AI",
-    linkLabel: "View code →",
+    kicker: "Full-stack · Gamification",
+    title: "Gamified Quiz Platform",
+    summary:
+      "A gamified quiz platform that makes learning engaging and competitive — points, leaderboards, and real-time ranking.",
+    stack: ["Realtime ranking", "Scalable architecture", "Cross-device"],
+    overview:
+      "A gamified quiz platform designed for fun learning and healthy competition. Users test their knowledge across various topics, earn points, and climb leaderboards — all through a user-friendly interface that keeps the focus on learning.",
+    built: [
+      "Dynamic quizzes across a range of topics with a points-based scoring system.",
+      "Real-time ranking and leaderboards that drive healthy competition.",
+      "A user-friendly interface designed around engagement and fun learning.",
+    ],
+    outcomes: [
+      "Scalable architecture delivering seamless performance across devices.",
+      "Learning that feels like a game — engaging, competitive, and repeatable.",
+    ],
   },
 ];
 

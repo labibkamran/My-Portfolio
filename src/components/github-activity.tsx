@@ -2,10 +2,11 @@
 
 /*
   Live GitHub activity: contribution heatmap + streak stats + 30-day sparkline.
-  Data comes from the public GitHub REST API (repos/followers) and the
-  github-contributions-api.jogruber.de proxy (contribution calendar), fetched
-  client-side. A deterministic mock renders first so the section never looks
-  broken if either API is unreachable.
+  Tries our own /api/github-stats route first (server-side token, includes
+  private-repo contributions); if that's not configured it falls back to the
+  public GitHub REST API (repos/followers) and the github-contributions-api.jogruber.de
+  proxy (public contributions only). A deterministic mock renders first so the
+  section never looks broken while either source loads or if both are unreachable.
 */
 import { useEffect, useRef, useState } from "react";
 import { SectionHeading } from "@/components/section-heading";
@@ -20,8 +21,7 @@ const LEVEL_COLORS = [
   "#E9B44C",
 ];
 
-type DayRec = { count: number; level: number };
-type ByDate = Record<string, DayRec>;
+type ByDate = Record<string, number>;
 type Cell = { level: number; future: boolean };
 type Stats = {
   total: number;
@@ -43,6 +43,10 @@ function today() {
   return t;
 }
 
+function levelFor(count: number) {
+  return count === 0 ? 0 : count < 3 ? 1 : count < 6 ? 2 : count < 10 ? 3 : 4;
+}
+
 function buildMock(): ByDate {
   const t = today();
   let a = 20260707 >>> 0;
@@ -62,9 +66,7 @@ function buildMock(): ByDate {
       count = 1 + Math.floor(rng() * (2 + 13 * recency));
     }
     if (rng() < 0.05) count += Math.floor(rng() * 7);
-    count = Math.min(count, 18);
-    const level = count === 0 ? 0 : count < 3 ? 1 : count < 6 ? 2 : count < 10 ? 3 : 4;
-    byDate[fmt(d)] = { count, level };
+    byDate[fmt(d)] = Math.min(count, 18);
   }
   return byDate;
 }
@@ -81,8 +83,7 @@ function buildWeeks(byDate: ByDate) {
   for (let w = 0; w < 53; w++) {
     const col: Cell[] = [];
     for (let d = 0; d < 7; d++) {
-      const rec = byDate[fmt(cur)];
-      col.push({ level: rec ? rec.level : 0, future: cur.getTime() > t.getTime() });
+      col.push({ level: levelFor(byDate[fmt(cur)] ?? 0), future: cur.getTime() > t.getTime() });
       cur.setTime(cur.getTime() + MS);
     }
     const first = new Date(start.getTime() + w * 7 * MS);
@@ -101,7 +102,7 @@ function computeStats(byDate: ByDate) {
   let longest = 0;
   let run = 0;
   for (let i = 364; i >= 0; i--) {
-    const c = byDate[fmt(new Date(t.getTime() - i * MS))]?.count ?? 0;
+    const c = byDate[fmt(new Date(t.getTime() - i * MS))] ?? 0;
     total += c;
     if (c > 0) {
       run++;
@@ -110,8 +111,8 @@ function computeStats(byDate: ByDate) {
   }
   let current = 0;
   for (let i = 0; i < 400; i++) {
-    const rec = byDate[fmt(new Date(t.getTime() - i * MS))];
-    if (rec && rec.count > 0) current++;
+    const c = byDate[fmt(new Date(t.getTime() - i * MS))] ?? 0;
+    if (c > 0) current++;
     else break;
   }
   return { total, longest, current };
@@ -121,7 +122,7 @@ function computeSpark(byDate: ByDate) {
   const t = today();
   const arr: number[] = [];
   for (let i = 29; i >= 0; i--) {
-    arr.push(byDate[fmt(new Date(t.getTime() - i * MS))]?.count ?? 0);
+    arr.push(byDate[fmt(new Date(t.getTime() - i * MS))] ?? 0);
   }
   return arr;
 }
@@ -245,6 +246,17 @@ export function GithubActivity() {
     apply(buildMock());
 
     (async () => {
+      try {
+        const r = await fetch("/api/github-stats");
+        if (r.ok) {
+          const j = await r.json();
+          if (j?.byDate) {
+            apply(j.byDate, { repos: j.repos, followers: j.followers });
+            return;
+          }
+        }
+      } catch {}
+
       let extra: { repos: number; followers: number } | undefined;
       try {
         const r = await fetch(`https://api.github.com/users/${site.githubUser}`);
@@ -259,7 +271,7 @@ export function GithubActivity() {
           const j = await r.json();
           if (Array.isArray(j?.contributions)) {
             const byDate: ByDate = {};
-            for (const c of j.contributions) byDate[c.date] = { count: c.count, level: c.level };
+            for (const c of j.contributions) byDate[c.date] = c.count;
             apply(byDate, extra);
             return;
           }
