@@ -23,9 +23,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.labibkamran.com"),
-  title: "Labib Kamran — Software Engineer | Node.js, TypeScript & Google Cloud",
+  title: "Labib Kamran | Software Engineer, Node.js, TypeScript & Google Cloud",
   description:
-    "Software engineer turning messy, complex problems into clean, scalable products. Full-stack web and cloud applications for startups and global clients — Node.js, TypeScript, Google Cloud, React, Next.js.",
+    "Software engineer turning messy, complex problems into clean, scalable products. Full-stack web and cloud applications for startups and global clients, built with Node.js, TypeScript, Google Cloud, React, and Next.js.",
   keywords: [
     "Labib Kamran",
     "Software Engineer",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     "DevOps",
   ],
   openGraph: {
-    title: "Labib Kamran — Software Engineer",
+    title: "Labib Kamran, Software Engineer",
     description:
       "Full-stack web and cloud applications for startups and global clients. Node.js · TypeScript · Google Cloud · React.",
     url: "https://www.labibkamran.com",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Labib Kamran — Software Engineer",
+    title: "Labib Kamran, Software Engineer",
     description:
       "Full-stack web and cloud applications for startups and global clients. Node.js · TypeScript · Google Cloud · React.",
   },

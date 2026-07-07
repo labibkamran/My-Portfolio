@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/section-heading";
 
 const principles = [
   "Understand the real problem before writing a line of code.",
-  "Keep the architecture simple — complexity is a cost you pay forever.",
+  "Keep the architecture simple; complexity is a cost you pay forever.",
   "Build systems that still hold up as they grow.",
 ];
 
@@ -16,7 +16,7 @@ export function About() {
         <div className="flex flex-wrap gap-14">
           <SectionHeading
             eyebrow="01 / About"
-            title="I care about the problem — not just the code."
+            title="I care about the problem, not just the code."
             className="max-w-[390px] flex-[1_1_280px]"
           />
           <div className="flex flex-[2_1_440px] flex-col gap-5">

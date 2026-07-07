@@ -19,7 +19,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-[1120px] px-6 pt-24 pb-24 sm:px-8 sm:pt-[124px]">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <span className="font-mono text-xs font-semibold tracking-[0.22em] uppercase text-primary">
-            {site.name} — {site.role}
+            {site.name} · {site.role}
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 backdrop-blur-md">
             <span className="size-2 rounded-full bg-[#3ecf8e] shadow-[0_0_10px_#3ecf8e]" />

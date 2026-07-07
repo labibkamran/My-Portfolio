@@ -20,7 +20,7 @@ export function Contact() {
             />
             <p className="mx-auto mt-4 max-w-[48ch] text-lg leading-relaxed text-muted-foreground">
               Have a problem worth solving? I&apos;m open to full-stack and cloud
-              projects — tell me what you&apos;re building.
+              projects. Tell me what you&apos;re building.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-3.5">
               <a
