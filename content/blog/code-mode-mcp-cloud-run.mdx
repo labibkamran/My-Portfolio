@@ -1,0 +1,118 @@
+---
+title: "Code Mode MCP on Cloud Run: 121 tools down to 2, and 83% fewer tokens"
+description: "How I cut MCP tool-definition tokens by 83% on a 121-operation admin API with Code Mode, and ran the sandbox on Google Cloud Run instead of Cloudflare Workers."
+date: 2026-12-05
+tags: [mcp, code-mode, cloud-run, ai-agents, webassembly]
+---
+
+An internal admin API I work on would have cost Claude 7,775 tokens on every request, before it read a word from the user. I rebuilt the MCP server with Code Mode and that number dropped to 1,322, which is 83% fewer. Then I had to solve a second problem: the reference Code Mode sandbox runs on Cloudflare Workers, and we run on Google Cloud Run.
+
+This post covers both: how I measured the token cost, and how I built the sandbox myself.
+
+| | Classic MCP | Code Mode |
+| --- | --- | --- |
+| Tools Claude sees | 121 (one per operation) | 2 (`search`, `execute`) |
+| Tool-definition tokens, admin role | 7,775 | 1,322 |
+| Tokens for a 62-operation role | 4,482 | 1,322 |
+| Where generated code runs | n/a | QuickJS + WebAssembly on Cloud Run |
+
+## Why one tool per API operation gets expensive
+
+The usual way to put an API behind MCP is to give every operation its own tool: listing users is one tool, updating a user is another. For a small API that's fine.
+
+Ours has 121 operations. Every tool comes with a name, a description and a JSON schema for its inputs, and the model receives all of them before each turn. So a user asks "how many accounts signed up this week?" and Claude first reads 7,775 tokens of tool definitions it mostly won't use.
+
+Anthropic's engineering team described the same two costs in their post on [code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp): tool definitions load into context upfront, and every intermediate result passes back through the model. Their worked example went from about 150,000 tokens to about 2,000. My API is far smaller, but the shape of the problem is identical, and it grows with every operation the backend team adds.
+
+## What is Code Mode for MCP?
+
+Code Mode replaces a long list of tools with two. `search` lets the model write JavaScript that queries the API's OpenAPI spec to find the right endpoint. `execute` lets it write JavaScript that calls those endpoints. The spec stays on the server, so the model only pays for the two tool definitions.
+
+Cloudflare introduced it in [Code Mode: give agents an entire API in 1,000 tokens](https://blog.cloudflare.com/code-mode-mcp/) in February 2026. Their own API has more than 2,500 endpoints, which they put at about 1.17 million tokens as classic tools. With Code Mode it's about 1,000.
+
+The library they published, `@cloudflare/codemode`, has an `openApiMcpServer` helper. You give it your OpenAPI document, a sandbox to run code in, and a `request` callback. When the model's code calls the API, the callback runs on your server, not inside the sandbox. That detail turned out to matter a lot (more on it below).
+
+## The numbers, by role
+
+Users of this API don't all see the same operations. Each person signs in with their own account and gets a spec filtered to their role. So I measured three roles, building both tool lists from the real role-filtered OpenAPI specs our backend generates.
+
+| Role | Operations | Classic MCP tokens | Code Mode tokens | Saved |
+| --- | --- | --- | --- | --- |
+| Admin | 121 | 7,775 | 1,322 | 83.0% |
+| Manager | 91 | 6,195 | 1,322 | 78.7% |
+| SEO | 62 | 4,482 | 1,322 | 70.5% |
+
+The Code Mode column doesn't move. Whether you can reach 62 operations or 121, the model sees the same two tool definitions. Adding an operation to the backend no longer makes every conversation more expensive.
+
+And the classic numbers are conservative. A lot of our request bodies use loose schemas, basically "an object". If those were fully typed, as they should be eventually, each classic tool would carry a longer schema and the gap would get wider.
+
+### How to measure your own MCP tool cost
+
+I counted with OpenAI's `o200k_base` tokenizer. It isn't Claude's tokenizer, so treat the absolute numbers as an estimate. The comparison between the two approaches still holds, because both sides are counted the same way.
+
+```python title="count_tools.py"
+import json
+import tiktoken
+
+enc = tiktoken.get_encoding("o200k_base")
+
+def tokens(tools: list[dict]) -> int:
+    # Count what the model sees per tool: name, description and input schema.
+    return sum(len(enc.encode(json.dumps(t))) for t in tools)
+
+classic = json.load(open("classic_tools.json"))["tools"]   # one tool per operation
+codemode = json.load(open("codemode_tools.json"))["tools"] # search + execute
+
+print(f"classic: {tokens(classic):,}  code mode: {tokens(codemode):,}")
+```
+
+Dump the `tools/list` response from each server into those two files and you'll have your own version of the table above in a minute.
+
+## Running Code Mode outside Cloudflare Workers
+
+Code Mode works because the model writes code and something runs it. In Cloudflare's library, that something is a Dynamic Worker: a V8 isolate on Workers with no file system, no environment variables and outbound requests switched off by default. It's a good sandbox, but it's tied to Cloudflare's platform, and our server runs on Google Cloud Run.
+
+So I wrote our own sandbox. It runs the model's JavaScript in QuickJS, a small JavaScript engine, compiled to WebAssembly and hosted inside the Cloud Run service. I gave it two hard rules.
+
+1. No network access. Code in the sandbox can't open a socket or call `fetch`. The only way out is the `request` function the server hands it.
+2. No secrets inside. No API keys, no user tokens, no environment variables. The sandbox couldn't leak a credential even if the model wrote code that tried to.
+
+Those two rules work because of the callback design I mentioned earlier. When the model's code calls the API, it looks roughly like this (illustrative, not our real endpoints):
+
+```js
+// What Claude might write in `execute`
+const res = await codemode.request({
+  method: "GET",
+  path: "/accounts",
+  query: { created_after: "2026-11-30", limit: 100 },
+});
+return res.items.filter((a) => a.status === "active").length;
+```
+
+`codemode.request` doesn't make an HTTP call from inside the sandbox. It hands the method, path and query back to the server, which attaches the signed-in user's credentials and makes the real request. Cloudflare's docs recommend this split, and they also suggest validating the path and enforcing authorization in that callback before anything with side effects runs.
+
+There's a nice side effect for token cost, too. In that snippet the model gets back one number, not 100 account records. Filtering happens in the sandbox, so the raw data never passes through Claude's context.
+
+## Why the token cost stays flat for every role
+
+Each user signs in with OAuth 2.1 and PKCE, using their own account. The server then builds a spec that only contains what their role allows, filtered by role and by country. An SEO user's `search` only finds 62 operations. An admin's finds 121.
+
+With classic MCP, that filtering would have changed the tool list per user, so the token cost would differ by role (you can see it in the table: 4,482 versus 7,775). With Code Mode the filtering happens inside the spec the sandbox can see, and the two tool definitions never change. Everyone costs 1,322 tokens.
+
+It also keeps permissions honest. The model can only discover operations that are in the user's spec, and every real request goes out with that user's own credentials, so the backend's permissions still apply.
+
+## What I'd watch out for before copying this
+
+Code Mode is still young. Cloudflare's own docs call it experimental and warn about breaking changes, and they cap the final response at roughly 6,000 estimated tokens. Pin your version.
+
+You also now own a sandbox. Anthropic's post is clear that running model-written code needs proper sandboxing, resource limits and monitoring, and that this is real operational work direct tool calls don't need. For us the trade was easy: 121 tools on every request was the bigger problem. For an API with eight operations, I'd keep classic tools and skip all of this.
+
+And search quality depends on your spec. The model finds endpoints by reading the OpenAPI document, so vague operation names and missing descriptions cost you in wrong calls instead of tokens. That's one more reason to tighten the loose schemas.
+
+## Sources
+
+- Cloudflare, [Code Mode: give agents an entire API in 1,000 tokens](https://blog.cloudflare.com/code-mode-mcp/) (Feb 2026)
+- Cloudflare docs, [Build a Code Mode MCP server](https://developers.cloudflare.com/agents/model-context-protocol/codemode/)
+- Anthropic Engineering, [Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) (Nov 2025)
+
+I'm building more MCP tooling in the open, including [mcpwarden](https://github.com/labibkamran/mcpwarden), a security scanner for MCP servers written in Go. If you've measured your own tool-definition cost, I'd like to compare numbers: find me on [LinkedIn](https://www.linkedin.com/in/labibkamran/) or see the rest of [my work](/#case-studies).
