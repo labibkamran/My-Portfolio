@@ -23,6 +23,11 @@ export const site = {
   ).replace(/\/$/, ""),
 };
 
+/** RSS <link rel="alternate">, repeated wherever a page sets its own alternates. */
+export const rssFeed = {
+  "application/rss+xml": [{ url: "/rss.xml", title: "Labib Kamran's blog" }],
+};
+
 export type CaseStudy = {
   kicker: string;
   title: string;

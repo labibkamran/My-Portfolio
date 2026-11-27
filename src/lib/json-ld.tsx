@@ -13,7 +13,6 @@ export const person = {
   "@id": personId,
   name: site.name,
   url: site.url,
-  image: `${site.url}/opengraph-image`,
   jobTitle: site.role,
   description: site.description,
   email: `mailto:${site.email}`,

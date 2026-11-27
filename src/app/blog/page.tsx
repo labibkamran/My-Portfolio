@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/format";
-import { site } from "@/lib/data";
+import { site, rssFeed } from "@/lib/data";
 import { JsonLd, personId, websiteId } from "@/lib/json-ld";
 
 const description =
@@ -14,7 +14,7 @@ const description =
 export const metadata: Metadata = {
   title: "Blog",
   description,
-  alternates: { canonical: "/blog" },
+  alternates: { canonical: "/blog", types: rssFeed },
   openGraph: { title: `Blog · ${site.name}`, description, url: "/blog", type: "website" },
 };
 
