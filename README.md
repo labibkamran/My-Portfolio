@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# labibkamran.com
 
-## Getting Started
-
-First, run the development server:
+Personal site and blog of Labib Kamran. Next.js 16 (App Router), Tailwind CSS 4, shadcn/ui. Deployed on Vercel.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Public URL used for canonicals, sitemap, RSS, JSON-LD and social cards. Defaults to the Vercel URL. Set it to `https://www.labibkamran.com` when the domain is live, then redeploy. |
+| `GITHUB_TOKEN` | Optional. Lets `/api/github-stats` include private contributions in the GitHub section. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Site copy (roles, case studies, skills, experience) lives in `src/lib/data.ts`.
 
-## Learn More
+## Writing a blog post
 
-To learn more about Next.js, take a look at the following resources:
+1. Add `content/blog/<slug>.mdx`. The file name becomes the URL: `/blog/<slug>`.
+2. Start it with this header:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```yaml
+   ---
+   title: "Post title, ideally under 65 characters"
+   description: "One or two sentences for search results and link previews. Under 170 characters."
+   date: 2026-12-05
+   updated: 2026-12-20   # optional
+   tags: [mcp, go, kubernetes]
+   draft: true            # optional: visible in `npm run dev`, hidden in production
+   ---
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Write Markdown below it. Code blocks get syntax highlighting; add a file name with ` ```go title="main.go" ` and highlight lines with `{2,4-6}`. Tables, links and `## headings` (which feed the table of contents) work as normal. Two components are available: `<Callout title="Note">...</Callout>` and `<Figure src="/blog/<slug>/diagram.png" alt="..." caption="..." />`. Put images in `public/blog/<slug>/`.
 
-## Deploy on Vercel
+The build fails with a clear message if the header is missing a field or has a bad date.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Each post automatically gets a page, an Open Graph image, BlogPosting JSON-LD, and entries in `/sitemap.xml`, `/rss.xml` and `/llms.txt`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## SEO files
+
+| Path | Source |
+| --- | --- |
+| `/sitemap.xml` | `src/app/sitemap.ts` |
+| `/robots.txt` | `src/app/robots.ts` (search and AI crawlers allowed) |
+| `/rss.xml` | `src/app/rss.xml/route.ts` |
+| `/llms.txt` | `src/app/llms.txt/route.ts` |
+| Open Graph images | `src/app/opengraph-image.tsx`, `src/app/blog/[slug]/opengraph-image.tsx` |
+| JSON-LD | `src/lib/json-ld.tsx` (Person + WebSite on every page) |
+
+After publishing a post: request indexing for its URL in Google Search Console, and submit it in Bing Webmaster Tools.
