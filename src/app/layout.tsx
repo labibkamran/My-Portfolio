@@ -6,7 +6,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { site, rssFeed } from "@/lib/data";
+import { site } from "@/lib/data";
 import { JsonLd, person, websiteId } from "@/lib/json-ld";
 
 const spaceGrotesk = Space_Grotesk({
@@ -49,7 +49,6 @@ export const metadata: Metadata = {
     "NAB Eye",
     "Islamabad",
   ],
-  alternates: { types: rssFeed },
   openGraph: {
     title: `${site.name} · ${site.role}`,
     description,

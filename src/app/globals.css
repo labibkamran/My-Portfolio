@@ -7,7 +7,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -114,40 +113,4 @@
     border-radius: 8px;
     border: 3px solid var(--background);
   }
-}
-
-/* Blog code blocks (rehype-pretty-code + Shiki github-dark-dimmed). */
-[data-rehype-pretty-code-figure] pre {
-  overflow-x: auto;
-  padding: 1.1rem 0;
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-[data-rehype-pretty-code-figure] code {
-  display: grid;
-  background: transparent !important;
-  padding: 0 !important;
-}
-[data-rehype-pretty-code-figure] [data-line] {
-  padding: 0 1.25rem;
-  border-left: 2px solid transparent;
-}
-[data-rehype-pretty-code-figure] [data-highlighted-line] {
-  background: rgba(233, 180, 76, 0.1);
-  border-left-color: var(--primary);
-}
-[data-rehype-pretty-code-title] {
-  border: 1px solid var(--border);
-  border-bottom: 0;
-  border-radius: 0.75rem 0.75rem 0 0;
-  background: #22272e;
-  padding: 0.5rem 1.1rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--muted-foreground);
-}
-[data-rehype-pretty-code-title] + pre {
-  margin-top: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }

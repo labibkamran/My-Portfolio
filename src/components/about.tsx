@@ -1,7 +1,6 @@
 /*
   About: working principles in a two-column split.
 */
-import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
 
 const principles = [
@@ -32,11 +31,7 @@ export function About() {
               Most days I work in Go, Node.js, Kubernetes and Google Cloud, with
               Next.js on the front end. I&apos;m in my final year of Computer
               Science at NUST and have been shipping production software since
-              2024. I write about what I build on the{" "}
-              <Link href="/blog" className="text-primary hover:text-primary/80">
-                blog
-              </Link>
-              .
+              2024.
             </p>
             <ul className="mt-2 flex flex-col gap-3.5">
               {principles.map((p) => (

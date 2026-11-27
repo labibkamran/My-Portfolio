@@ -1,6 +1,6 @@
 /*
   All site content in one place. Experience and summary match the LinkedIn
-  profile; projects are real shipped work. Blog posts live in content/blog.
+  profile; projects are real shipped work.
 */
 
 export const site = {
@@ -19,11 +19,6 @@ export const site = {
     "https://drive.google.com/file/d/1b3CRhrYtIV_yjHcONxDzypyYTwH_Je8y/view?usp=sharing",
   // Canonical host. NEXT_PUBLIC_SITE_URL overrides it (e.g. for a staging deploy).
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://labibkamran.com").replace(/\/$/, ""),
-};
-
-/** RSS <link rel="alternate">, repeated wherever a page sets its own alternates. */
-export const rssFeed = {
-  "application/rss+xml": [{ url: "/rss.xml", title: "Labib Kamran's blog" }],
 };
 
 export type CaseStudy = {
@@ -77,10 +72,6 @@ export const caseStudies: CaseStudy[] = [
       "Tool definitions dropped from 7,775 to 1,322 tokens, measured with the o200k tokenizer on the real role-filtered specs.",
       "The cost stays at 1,322 tokens for every role, so adding operations no longer grows every prompt.",
     ],
-    link: {
-      href: "/blog/code-mode-mcp-cloud-run",
-      label: "Read the full write-up",
-    },
   },
   {
     kicker: "Mobile · Fintech",

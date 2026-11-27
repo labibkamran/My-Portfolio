@@ -1,5 +1,5 @@
 /*
-  Shared 1200x630 social card used by the site and blog Open Graph images.
+  Shared 1200x630 social card used by the site Open Graph image.
 */
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/data";

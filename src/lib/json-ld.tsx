@@ -1,7 +1,6 @@
 /*
   Structured data helpers. Every page shares one Person entity (@id), so Google
-  and AI assistants connect the profile, the blog and each post to the same
-  author.
+  and AI assistants connect every page to the same author.
 */
 import { site } from "@/lib/data";
 

@@ -58,7 +58,7 @@ export function Hero() {
         <div className="mt-14 flex flex-wrap gap-11 border-t border-white/[0.07] pt-8">
           {facts.map((f) => (
             <div key={f.label} className="flex flex-col gap-2">
-              <span className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-muted-foreground/60">
+              <span className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">
                 {f.label}
               </span>
               <span className="text-[15px] font-medium text-foreground">

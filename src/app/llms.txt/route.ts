@@ -4,22 +4,26 @@
   data as the site, so it never drifts.
 */
 import { site, caseStudies, experience } from "@/lib/data";
-import { getAllPosts } from "@/lib/posts";
 
 export const dynamic = "force-static";
 
 export async function GET() {
-  const posts = await getAllPosts();
   const work = caseStudies
-    .map((c) => `- ${c.title}: ${c.summary}${c.link ? ` (${c.link.href.startsWith("/") ? site.url + c.link.href : c.link.href})` : ""}`)
-    .join("\n");
+    .map((c) =>
+      [
+        `### ${c.title}`,
+        c.overview,
+        `Stack: ${c.stack.join(", ")}`,
+        ...c.built.map((b) => `- Built: ${b}`),
+        ...c.outcomes.map((o) => `- Outcome: ${o}`),
+        ...(c.link ? [`- Link: ${c.link.href.startsWith("/") ? site.url + c.link.href : c.link.href}`] : []),
+      ].join("\n")
+    )
+    .join("\n\n");
   const roles = experience
     .filter((e) => !e.role.startsWith("BS "))
     .map((e) => `- ${e.role}, ${e.org} (${e.period})`)
     .join("\n");
-  const blog = posts.length
-    ? posts.map((p) => `- [${p.title}](${site.url}/blog/${p.slug}): ${p.description}`).join("\n")
-    : "- No posts yet.";
 
   const body = `# ${site.name}
 
@@ -36,15 +40,11 @@ ${work}
 ## Experience
 ${roles}
 
-## Blog
-${blog}
-
 ## Profiles
 - [Website](${site.url})
 - [LinkedIn](${site.linkedin})
 - [GitHub](${site.github})
 - [X](${site.x})
-- [RSS feed](${site.url}/rss.xml)
 `;
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
 }

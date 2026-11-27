@@ -145,7 +145,7 @@ function Heatmap({ weeks, months }: { weeks: Cell[][]; months: { index: number; 
     <div className="inline-block">
       <div className="ml-[30px] flex h-[15px]">
         {cols.map((_, i) => (
-          <div key={i} className="w-[15px] flex-none font-mono text-[11px] font-medium whitespace-nowrap text-muted-foreground/75">
+          <div key={i} className="w-[15px] flex-none font-mono text-[11px] font-medium whitespace-nowrap text-muted-foreground">
             {monthAt[i] || ""}
           </div>
         ))}
@@ -153,7 +153,7 @@ function Heatmap({ weeks, months }: { weeks: Cell[][]; months: { index: number; 
       <div className="flex">
         <div className="mr-1.5 flex w-6 flex-col gap-[3px]">
           {dayLabels.map((l, i) => (
-            <div key={i} className="h-3 text-right font-mono text-[10px] leading-3 font-medium text-muted-foreground/75">
+            <div key={i} className="h-3 text-right font-mono text-[10px] leading-3 font-medium text-muted-foreground">
               {l}
             </div>
           ))}
@@ -300,7 +300,7 @@ export function GithubActivity() {
               <span className="font-mono text-[12.5px] font-semibold tracking-[0.1em] uppercase text-foreground/85">
                 Contributions · last 12 months
               </span>
-              <div className="hidden items-center gap-[7px] font-mono text-[11.5px] font-medium text-muted-foreground/75 sm:flex">
+              <div className="hidden items-center gap-[7px] font-mono text-[11.5px] font-medium text-muted-foreground sm:flex">
                 <span>Less</span>
                 {LEVEL_COLORS.map((c) => (
                   <span key={c} className="size-[11px] rounded-[3px]" style={{ background: c }} />

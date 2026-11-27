@@ -12,11 +12,11 @@ import { Experience } from "@/components/experience";
 import { Contact } from "@/components/contact";
 import { SiteFooter } from "@/components/site-footer";
 import type { Metadata } from "next";
-import { site, rssFeed } from "@/lib/data";
+import { site } from "@/lib/data";
 import { JsonLd, personId } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/", types: rssFeed },
+  alternates: { canonical: "/" },
 };
 
 export default function Home() {

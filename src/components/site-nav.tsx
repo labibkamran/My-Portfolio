@@ -9,7 +9,6 @@ import { site } from "@/lib/data";
 const links = [
   { href: "/#case-studies", label: "Work" },
   { href: "/#experience", label: "Experience" },
-  { href: "/blog", label: "Blog" },
   { href: "/#contact", label: "Contact" },
 ];
 
