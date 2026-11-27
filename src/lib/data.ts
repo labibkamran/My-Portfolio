@@ -17,10 +17,8 @@ export const site = {
   x: "https://x.com/LabibKamra6962",
   resume:
     "https://drive.google.com/file/d/1b3CRhrYtIV_yjHcONxDzypyYTwH_Je8y/view?usp=sharing",
-  // Set NEXT_PUBLIC_SITE_URL in Vercel (e.g. https://www.labibkamran.com) once the domain is live.
-  url: (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://my-portfolio-three-rust-67.vercel.app"
-  ).replace(/\/$/, ""),
+  // Canonical host. NEXT_PUBLIC_SITE_URL overrides it (e.g. for a staging deploy).
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://labibkamran.com").replace(/\/$/, ""),
 };
 
 /** RSS <link rel="alternate">, repeated wherever a page sets its own alternates. */

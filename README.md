@@ -12,7 +12,7 @@ npm run build
 
 | Variable | Purpose |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Public URL used for canonicals, sitemap, RSS, JSON-LD and social cards. Defaults to the Vercel URL. Set it to `https://www.labibkamran.com` when the domain is live, then redeploy. |
+| `NEXT_PUBLIC_SITE_URL` | Public URL used for canonicals, sitemap, RSS, JSON-LD and social cards. Defaults to `https://labibkamran.com`; only set it to override that. |
 | `GITHUB_TOKEN` | Optional. Lets `/api/github-stats` include private contributions in the GitHub section. |
 
 Site copy (roles, case studies, skills, experience) lives in `src/lib/data.ts`.
