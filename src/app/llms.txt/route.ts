@@ -23,7 +23,7 @@ export async function GET() {
 
   const body = `# ${site.name}
 
-> ${site.name} is a ${site.role} based in ${site.location}. ${site.description}
+> ${site.name} is a ${site.role} based in ${site.location}. He builds the backend and LLM layer of NAB Eye, the AI investigation system used by Pakistan's National Accountability Bureau, owns cloud infrastructure at PlutoSec (Toronto, remote), where he cut cloud costs by 50%, and builds MCP servers and developer tooling in Go.
 
 ## Key facts
 - Current roles: Software Engineer at the National Center of Artificial Intelligence (NCAI), Pakistan, building NAB Eye; Senior Software Engineer at PlutoSec (Toronto, remote).
