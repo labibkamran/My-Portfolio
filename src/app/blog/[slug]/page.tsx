@@ -116,7 +116,7 @@ export default async function PostPage({ params }: Props) {
         </div>
       </header>
 
-      <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,760px)_1fr]">
+      <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,760px)_1fr]">
         <article className="prose prose-invert prose-lg max-w-none prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-[-0.01em] prose-headings:scroll-mt-24 prose-h2:mt-14 prose-h2:text-[28px] prose-h3:text-[21px] prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-headings:prose-a:text-foreground prose-strong:text-foreground prose-code:rounded-md prose-code:bg-white/[0.07] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:text-[0.86em] prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-[#1c2128] prose-blockquote:border-l-primary prose-blockquote:text-foreground/80 prose-li:marker:text-primary prose-hr:border-white/10">
           {content}
         </article>
