@@ -1,6 +1,7 @@
 /*
   Hero: the page's single h1, availability badge, primary CTAs, and stack facts.
 */
+import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/data";
@@ -35,7 +36,7 @@ export function Hero() {
           {site.description}
         </p>
         <div className="mt-10 flex flex-wrap gap-3.5">
-          <a
+          <Link
             href="/#case-studies"
             className={cn(
               buttonVariants(),
@@ -43,8 +44,8 @@ export function Hero() {
             )}
           >
             View my work →
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#contact"
             className={cn(
               buttonVariants({ variant: "outline" }),
@@ -52,7 +53,7 @@ export function Hero() {
             )}
           >
             Get in touch
-          </a>
+          </Link>
         </div>
         <div className="mt-14 flex flex-wrap gap-11 border-t border-white/[0.07] pt-8">
           {facts.map((f) => (

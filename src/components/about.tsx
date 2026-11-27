@@ -1,6 +1,7 @@
 /*
   About: working principles in a two-column split.
 */
+import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
 
 const principles = [
@@ -32,9 +33,9 @@ export function About() {
               Next.js on the front end. I&apos;m in my final year of Computer
               Science at NUST and have been shipping production software since
               2024. I write about what I build on the{" "}
-              <a href="/blog" className="text-primary hover:text-primary/80">
+              <Link href="/blog" className="text-primary hover:text-primary/80">
                 blog
-              </a>
+              </Link>
               .
             </p>
             <ul className="mt-2 flex flex-col gap-3.5">
