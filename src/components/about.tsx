@@ -5,8 +5,8 @@ import { SectionHeading } from "@/components/section-heading";
 
 const principles = [
   "Understand the real problem before writing a line of code.",
-  "Keep the architecture simple; complexity is a cost you pay forever.",
-  "Build systems that still hold up as they grow.",
+  "Keep the architecture simple. Complexity is a cost you pay forever.",
+  "Measure it. A number beats an opinion in every design review.",
 ];
 
 export function About() {
@@ -21,14 +21,21 @@ export function About() {
           />
           <div className="flex flex-[2_1_440px] flex-col gap-5">
             <p className="text-lg leading-[1.7] text-foreground/85">
-              I turn messy, complex problems into clean, scalable products:
-              full-stack web and cloud apps that travel from rough concept to
-              something reliable and ready to grow.
+              I take systems from a rough idea to production and keep them
+              running there. At NCAI that meant a sovereign AI system where case
+              data never leaves the client&apos;s own network. Elsewhere it has
+              meant an MCP server that cut tool tokens by 83% and a cloud bill
+              cut in half.
             </p>
             <p className="text-lg leading-[1.7] text-muted-foreground">
-              Most of my work lives in Node.js and Google Cloud, with React on
-              the front end. I like keeping the surface simple and the
-              foundations solid.
+              Most days I work in Go, Node.js, Kubernetes and Google Cloud, with
+              Next.js on the front end. I&apos;m in my final year of Computer
+              Science at NUST and have been shipping production software since
+              2024. I write about what I build on the{" "}
+              <a href="/blog" className="text-primary hover:text-primary/80">
+                blog
+              </a>
+              .
             </p>
             <ul className="mt-2 flex flex-col gap-3.5">
               {principles.map((p) => (

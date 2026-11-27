@@ -1,5 +1,5 @@
 /*
-  Footer: copyright + back-to-top.
+  Footer: copyright, blog/RSS links and back-to-top.
 */
 import { site } from "@/lib/data";
 
@@ -10,9 +10,11 @@ export function SiteFooter() {
         <span className="font-mono text-[13px] font-medium text-muted-foreground/60">
           © {new Date().getFullYear()} {site.name}
         </span>
-        <a href="#top" className="font-mono text-[13px] font-medium text-muted-foreground transition-colors hover:text-primary">
-          Back to top ↑
-        </a>
+        <div className="flex items-center gap-5 font-mono text-[13px] font-medium text-muted-foreground">
+          <a href="/blog" className="transition-colors hover:text-primary">Blog</a>
+          <a href="/rss.xml" className="transition-colors hover:text-primary">RSS</a>
+          <a href="#top" className="transition-colors hover:text-primary">Back to top ↑</a>
+        </div>
       </div>
     </footer>
   );

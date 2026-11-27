@@ -79,6 +79,15 @@ function CaseStudyCard({ cs }: { cs: CaseStudy }) {
         <div className="mt-8 flex flex-col gap-8">
           <JourneyBlock label="What I built" items={cs.built} />
           <JourneyBlock label="Key achievements" items={cs.outcomes} />
+          {cs.link && (
+            <a
+              href={cs.link.href}
+              {...(cs.link.href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}
+              className="font-heading text-[15px] font-semibold text-primary hover:text-primary/80"
+            >
+              {cs.link.label} →
+            </a>
+          )}
           <div className="flex flex-wrap gap-[7px] border-t border-white/[0.07] pt-6">
             {cs.stack.map((t) => (
               <Badge
