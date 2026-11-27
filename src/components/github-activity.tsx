@@ -5,8 +5,8 @@
   Tries our own /api/github-stats route first (server-side token, includes
   private-repo contributions); if that's not configured it falls back to the
   public GitHub REST API (repos/followers) and the github-contributions-api.jogruber.de
-  proxy (public contributions only). A deterministic mock renders first so the
-  section never looks broken while either source loads or if both are unreachable.
+  proxy (public contributions only). Until real data arrives the grid stays
+  empty; it never shows invented numbers.
 */
 import { useEffect, useRef, useState } from "react";
 import { SectionHeading } from "@/components/section-heading";
@@ -45,30 +45,6 @@ function today() {
 
 function levelFor(count: number) {
   return count === 0 ? 0 : count < 3 ? 1 : count < 6 ? 2 : count < 10 ? 3 : 4;
-}
-
-function buildMock(): ByDate {
-  const t = today();
-  let a = 20260707 >>> 0;
-  const rng = () => {
-    a = (a + 0x6d2b79f5) | 0;
-    let x = Math.imul(a ^ (a >>> 15), 1 | a);
-    x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x;
-    return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
-  };
-  const byDate: ByDate = {};
-  for (let i = 370; i >= 0; i--) {
-    const d = new Date(t.getTime() - i * MS);
-    const recency = (370 - i) / 370;
-    const weekend = d.getDay() === 0 || d.getDay() === 6 ? 0.5 : 1;
-    let count = 0;
-    if (rng() < (0.34 + 0.42 * recency) * weekend) {
-      count = 1 + Math.floor(rng() * (2 + 13 * recency));
-    }
-    if (rng() < 0.05) count += Math.floor(rng() * 7);
-    byDate[fmt(d)] = Math.min(count, 18);
-  }
-  return byDate;
 }
 
 function buildWeeks(byDate: ByDate) {
@@ -243,8 +219,6 @@ export function GithubActivity() {
       });
     };
 
-    apply(buildMock());
-
     (async () => {
       try {
         const r = await fetch("/api/github-stats");
@@ -301,7 +275,7 @@ export function GithubActivity() {
             <a href={site.github} target="_blank" rel="noopener" className="text-primary hover:text-primary/80">
               @{site.githubUser}
             </a>
-            . It refreshes itself, and falls back gracefully if GitHub is unreachable.
+            , refreshed from GitHub on every visit.
           </p>
         </div>
 
