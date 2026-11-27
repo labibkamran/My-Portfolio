@@ -5,6 +5,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { site } from "@/lib/data";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -22,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.labibkamran.com"),
+  metadataBase: new URL(site.url),
   title: "Labib Kamran | Software Engineer, Node.js, TypeScript & Google Cloud",
   description:
     "Software engineer turning messy, complex problems into clean, scalable products. Full-stack web and cloud applications for startups and global clients, built with Node.js, TypeScript, Google Cloud, React, and Next.js.",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     title: "Labib Kamran, Software Engineer",
     description:
       "Full-stack web and cloud applications for startups and global clients. Node.js · TypeScript · Google Cloud · React.",
-    url: "https://www.labibkamran.com",
+    url: site.url,
     siteName: "Labib Kamran",
     type: "website",
   },

@@ -15,7 +15,10 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/labibkamran/",
   resume:
     "https://drive.google.com/file/d/1b3CRhrYtIV_yjHcONxDzypyYTwH_Je8y/view?usp=sharing",
-  url: "https://www.labibkamran.com",
+  // Set NEXT_PUBLIC_SITE_URL in Vercel (e.g. https://www.labibkamran.com) once the domain is live.
+  url: (
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://my-portfolio-three-rust-67.vercel.app"
+  ).replace(/\/$/, ""),
 };
 
 export type CaseStudy = {
