@@ -19,8 +19,8 @@ export function Contact() {
               className="[&>h2]:mx-auto [&>h2]:max-w-[16ch] [&>h2]:text-[clamp(30px,4.5vw,46px)]"
             />
             <p className="mx-auto mt-4 max-w-[48ch] text-lg leading-relaxed text-muted-foreground">
-              Have a problem worth solving? I&apos;m open to full-stack and cloud
-              projects. Tell me what you&apos;re building.
+              Have a problem worth solving? I&apos;m open to DevOps, backend and
+              AI infrastructure work. Tell me what you&apos;re building.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-3.5">
               <a
@@ -50,6 +50,9 @@ export function Contact() {
               </a>
               <a href={site.linkedin} target="_blank" rel="noopener" className="text-[14.5px] font-medium text-muted-foreground transition-colors hover:text-primary">
                 LinkedIn →
+              </a>
+              <a href={site.x} target="_blank" rel="noopener" className="text-[14.5px] font-medium text-muted-foreground transition-colors hover:text-primary">
+                X →
               </a>
               <a href={`mailto:${site.email}`} className="text-[14.5px] font-medium text-muted-foreground transition-colors hover:text-primary">
                 {site.email}

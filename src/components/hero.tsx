@@ -1,19 +1,20 @@
 /*
   Hero: the page's single h1, availability badge, primary CTAs, and stack facts.
 */
+import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/data";
 
 const facts = [
-  { label: "Stack", value: "Node.js · Google Cloud · React" },
-  { label: "Focus", value: "Full-stack & cloud architecture" },
-  { label: "Working", value: "Remote · worldwide" },
+  { label: "Stack", value: "Go · Node.js · Kubernetes · Google Cloud" },
+  { label: "Focus", value: "DevOps, backends & production AI" },
+  { label: "Based in", value: "Islamabad · remote worldwide" },
 ];
 
 export function Hero() {
   return (
-    <header id="top" className="relative overflow-hidden">
+    <header className="relative overflow-hidden">
       <div className="pointer-events-none absolute -top-32 -left-24 size-[540px] rounded-full bg-[radial-gradient(circle,rgba(233,180,76,0.20),transparent_62%)] blur-[46px]" />
       <div className="pointer-events-none absolute -right-16 -bottom-44 size-[500px] rounded-full bg-[radial-gradient(circle,rgba(95,159,224,0.13),transparent_60%)] blur-[54px]" />
       <div className="relative mx-auto max-w-[1120px] px-6 pt-24 pb-24 sm:px-8 sm:pt-[124px]">
@@ -35,29 +36,29 @@ export function Hero() {
           {site.description}
         </p>
         <div className="mt-10 flex flex-wrap gap-3.5">
-          <a
-            href="#case-studies"
+          <Link
+            href="/#case-studies"
             className={cn(
               buttonVariants(),
               "h-auto rounded-xl border-primary/50 px-6 py-3.5 font-heading text-[15px] font-semibold transition-transform hover:-translate-y-0.5 hover:shadow-[0_14px_34px_-12px_rgba(233,180,76,0.55)]"
             )}
           >
             View my work →
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/#contact"
             className={cn(
               buttonVariants({ variant: "outline" }),
               "h-auto rounded-xl border-white/10 bg-white/5 px-6 py-3.5 font-heading text-[15px] font-semibold text-foreground backdrop-blur-md transition-transform hover:-translate-y-0.5 hover:bg-white/[0.09]"
             )}
           >
             Get in touch
-          </a>
+          </Link>
         </div>
         <div className="mt-14 flex flex-wrap gap-11 border-t border-white/[0.07] pt-8">
           {facts.map((f) => (
             <div key={f.label} className="flex flex-col gap-2">
-              <span className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-muted-foreground/60">
+              <span className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">
                 {f.label}
               </span>
               <span className="text-[15px] font-medium text-foreground">
